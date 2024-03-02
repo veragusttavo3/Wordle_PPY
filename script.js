@@ -4,20 +4,27 @@ let gris= "#a4aec4";
 let intentos = 6;
 let libro = ["CARTA","TORTA","MAPLE","PERLA","PLATO","MULTA","TECLA","TECHO"];
 let indice = Math.floor(Math.random()* libro.length);
-let palabra = libro[indice];
-console.log(palabra);
+let palabra;
 window.addEventListener('load', init)
 
 const button = document.getElementById("guess-button");
 
 button.addEventListener("click", intentar);
 
+// URL de la API de palabras aleatorias en español con longitud 5
+const apiUrl = 'https://random-word-api.herokuapp.com/word?lang=es&length=5';
 
-
+// Hacer una solicitud usando el método fetch.  
+fetch(apiUrl)
+.then(response => {// Verificar si la solicitud fue exitosa (código de estado 200-299)
+    if (!response.ok) {throw new Error(`Error de red: ${response.status}`);}
+     return response.json();})// Convertir la respuesta a formato JSON
+     .then(data => { palabra=data[0].toUpperCase(); console.log(palabra);}) // Manipular los datos obtenidos de la API
+     .catch(error => {palabra = error = libro[indice];
+        console.error("la palabra es: ",palabra); });// Manejar errores de red u otros errores
 function init(){
     console.log('Esto se ejecuta solo cuando se carga la pagina web')
-} 
-
+}
 function intentar(){
     const GRID = document.getElementById("grid");
     const ROW = document.createElement("div");
@@ -28,7 +35,6 @@ function intentar(){
     for (let i in palabra){
         const SPAN = document.createElement("span");
         SPAN.className = "letter";
-        
         if (INTENTO[i]===palabra[i]){
             console.log(INTENTO[i], "VERDE")
             SPAN.innerHTML = INTENTO[i];
@@ -57,7 +63,6 @@ function intentar(){
         terminar("<h1>PERDISTE!😖</h1>")
     }
 }
-
 function leerIntento(){
     let intento = document.getElementById("guess-input");
     intento = intento.value;

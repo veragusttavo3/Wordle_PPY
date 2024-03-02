@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Wordle PPY</h1>
-    <input type="text" onkeydown="return /[a-zA-Z]/i.test(event.key)" minlength="5" maxlength="5" id="guess-input">
+    <input type="text" onkeydown="return /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/i.test(event.key)" minlength="5" maxlength="5" id="guess-input">
     <button id="guess-button">Intentar</button>
     <div id="grid">
 <!-- PRIMER INTENTO 
