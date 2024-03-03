@@ -31,6 +31,7 @@ function intentar(){
     ROW.className = "row";
     console.log(ROW);
     const INTENTO = leerIntento();
+    if(INTENTO.length !=5){alert("Introducir que contenga 5 caracter!!")}else{
     console.log("1: " + INTENTO);
     for (let i in palabra){
         const SPAN = document.createElement("span");
@@ -62,6 +63,7 @@ function intentar(){
     if (intentos==0){
         terminar("<h1>PERDISTE!😖</h1>")
     }
+}
 }
 function leerIntento(){
     let intento = document.getElementById("guess-input");
