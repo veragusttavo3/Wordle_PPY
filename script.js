@@ -6,25 +6,25 @@ let texColor = ["verde", "amarillo", "gris"];
 let texFinal = ["<h1>GANASTE!😀</h1>", "<h1>PERDISTE!😖</h1>"];
 let iniTex = "Esto se ejecuta solo cuando se carga la pagina web";
 let intentos = 5;
-let secreTex;
+let secreTex=libro[indice];
 // URL de la API de secreTexs aleatorias en español con longitud 5
-const apiUrl = 'https://random-word-api.herokuapp.com/word?lang=es&length=5';
+//const apiUrl = 'https://random-word-api.herokuapp.com/word?lang=es&length=5';
 const button = document.getElementById("guess-button");
 
 window.addEventListener('load', init);
 button.addEventListener("click", intentar);
 
 // Hacer una solicitud usando el método fetch.  
-fetch(apiUrl)
-    .then(response => {// Verificar si la solicitud fue exitosa (código de estado 200-299)
-        if (!response.ok) { throw new Error(`Error de red: ${response.status}`); }
-        return response.json();
-    })// Convertir la respuesta a formato JSON
-    .then(data => { secreTex = data[0].toUpperCase(); console.log(secreTex); }) // Manipular los datos obtenidos de la API
-    .catch(error => {
-        secreTex = error = libro[indice];
-        console.error("la secreTex es: ", secreTex);
-    });// Manejar errores de red u otros errores
+//fetch(apiUrl)
+//    .then(response => {// Verificar si la solicitud fue exitosa (código de estado 200-299)
+//        if (!response.ok) { throw new Error(`Error de red: ${response.status}`); }
+//        return response.json();
+//    })// Convertir la respuesta a formato JSON
+//    .then(data => { secreTex = data[0].toUpperCase(); console.log(secreTex); }) // Manipular los datos obtenidos de la API
+//    .catch(error => {
+//        secreTex = error = libro[indice];
+//       console.error("la secreTex es: ", secreTex);
+//    });// Manejar errores de red u otros errores
 function init() { console.log(iniTex) }
 function intentar() {
     const GRID = document.getElementById("grid");
